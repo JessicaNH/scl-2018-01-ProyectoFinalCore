@@ -26,7 +26,7 @@ infoVisit.addEventListener("click", event => {
   const infoUsuarioIf = {
     recinto: selectOptionsIf.value,
     fecha: fecha,
-    
+
   }; // Creamos un objecto con todos los elementos de nuestro formulario.
   saveContactForm(infoUsuarioIf); // Enviamos la información obtenida por el usuario a la función que se encargara de guardar la información en Firebase
   form.reset(); // borramos todos los campos.
@@ -48,6 +48,7 @@ infoVisit.addEventListener("click", event => {
     .database()
     .ref("/zonaIf")
     .once("value", function datosIf(send) {
+
       printInfoVisit.innerHTML = ""; // se evita la repeticion de la visita 
       Object.entries(send.val()).forEach(sends => {
         printInfoVisit.innerHTML += 
@@ -69,3 +70,16 @@ function deletePost(event) {
  }
 }
  
+
+      if (!send || !send.val()) {
+        return;
+      }
+      printInfoVisit.innerHTML = ""; // se evita la repeticion de la visita 
+      Object.entries(send.val()).forEach(sends => {
+        printInfoVisit.innerHTML += `
+    <p>${sends[1].recinto}
+       ${sends[1].fecha}</p> `;
+      });
+    });
+});
+

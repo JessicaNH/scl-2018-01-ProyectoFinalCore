@@ -39,9 +39,24 @@
 
   <div id="printRecords"></div>
 
+<form id="formVisit">
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputSelect">Zona If</label>
+  </div>
+  <select class="custom-select" id="zonaIfOptions">
+    <option selected>¿Que empresa va a visitar?</option>
+    <option value="Laboratoria">Laboratoria</option>
+    <option value="Aguas Lab">Aguas Lab</option>
+    <option value="Robotics">Robotics</option>
+  </select>
+</div>
+
+<button id= "infoVisit">Enviar Notificación</button>
+</form>
 
 
-
+<div id="printInfoVisit"></div>
   <!-- script section -->
   <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
   <script>
