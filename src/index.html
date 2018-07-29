@@ -8,8 +8,25 @@
   <title>Records Web</title>
 </head>
 <body>
-  
 
+<form id="formPrueba">
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">Zona If</label>
+  </div>
+  <select class="custom-select" id="zonaIfOptions">
+    <option selected>Choose...</option>
+    <option value="1" id="zonaLaboratoria" >One</option>
+    <option value="2">Two</option>
+    <option value="3">Three</option>
+  </select>
+</div>
+
+<button id= "infoZonaIf"> Enviar Notificación</button>
+</form>
+
+
+<div id="printZonaId"></div>
   <!-- script section -->
   <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
   <script>
