@@ -15,14 +15,6 @@ infoVisit.addEventListener("click", event => {
   const infoUsuarioIf = { recinto: selectOptionsIf.value }; // Creamos un objecto con todos los elementos de nuestro formulario.
   saveContactForm(infoUsuarioIf); // Enviamos la información obtenida por el usuario a la función que se encargara de guardar la información en Firebase
   form.reset(); // borramos todos los campos.
-
-  // aqui evaluamos la ruta y se imprime en HTML
-  firebase.database().ref("/zonaIf").once("value", function datosIf(send) {
-    Object.entries(send.val()).forEach(sends => {
-      printInfoVisit.innerHTML += `
-    <p>${sends[1].recinto}</p> `;
-      });
-    });
   // Nos informa si la informacion fue guardada correctamente en firebase
   function saveContactForm(infoUsuarioIf) {
     firebase
@@ -36,4 +28,17 @@ infoVisit.addEventListener("click", event => {
         alert("mensaje No guardado"); // En caso de ocurrir un error le mostramos al usuario que ocurrió un error.
       });
   }
+  // aqui evaluamos la ruta y se imprime en HTML
+  firebase
+    .database()
+    .ref("/zonaIf")
+    .once("value", function datosIf(send) {
+      if (!send || !send.val()) {
+        return;
+      }
+      Object.entries(send.val()).forEach(sends => {
+        printInfoVisit.innerHTML += `
+    <p>${sends[1].recinto}</p> `;
+      });
+    });
 });
