@@ -1,3 +1,16 @@
+const register = document.getElementById('register');
+register.addEventListener('click', () => {
+  document.getElementById('screenRegister').style.display = 'none';
+  document.getElementById('screenChooseCompany').style.display = 'block';
+});
+
+const out = document.getElementById('out');
+out.addEventListener('click', () => {
+  document.getElementById('screenRegister').style.display = 'none';
+  document.getElementById('screenChooseCompany').style.display = 'none';
+  document.getElementById('screenOut').style.display = 'block';
+});
+
 const form = document.getElementById('formVisit'); // Obtenemos la referencia al formulario
 
 if (form) {
@@ -12,13 +25,13 @@ infoVisit.addEventListener('click', event => {
   let day = formatoFecha.getUTCDate();
   let month = formatoFecha.getMonth() + 1;
   let year = formatoFecha.getFullYear();
-  var hour = formatoFecha.getHours();
-  var min = formatoFecha.getMinutes();
+  let hour = formatoFecha.getHours();
+  let min = formatoFecha.getMinutes();
 
   fecha = day + '/' + month + '/' + year + ' ' + hour + ':' + min;
   // Aqui se obtiene el valor del select
   let selectOptionsIf = document.getElementById('zonaIfOptions');
-  selectOptionsIf.addEventListener('click', function() {
+  selectOptionsIf.addEventListener('click', () => {
     let selectedZonaIf = this.options[selectOptionsIf.selectedIndex];
     console.log(selectedZonaIf.value);
   });
@@ -26,10 +39,9 @@ infoVisit.addEventListener('click', event => {
   const infoUsuarioIf = {
     recinto: selectOptionsIf.value,
     fecha: fecha,
-
   }; // Creamos un objecto con todos los elementos de nuestro formulario.
-  saveContactForm(infoUsuarioIf); // Enviamos la información obtenida por el usuario a la función que se encargara de guardar la información en Firebase
-  form.reset(); // borramos todos los campos.
+  saveContactForm(infoUsuarioIf); // Enviamos la información obtenida por el usuario a la función que se encargará de guardar la información en Firebase
+  form.reset(); // Borramos todos los campos.
   // Nos informa si la informacion fue guardada correctamente en firebase
   function saveContactForm(infoUsuarioIf) {
     firebase
@@ -37,10 +49,10 @@ infoVisit.addEventListener('click', event => {
       .ref('zonaIf')
       .push(infoUsuarioIf) // Hacemos referencia el nombre del objeto que contendrá nuestros registros y empujamos los nuevos envios de datos
       .then(function() {
-        alert('mensaje guardado'); // Si la petición es correcta y almaceno los datos mostramos un mensaje al usuario.
+        alert('Su selección fue guardada correctamente, se le notificará a la empresa de su visita'); // Si la petición es correcta y almaceno los datos mostramos un mensaje al usuario.
       })
       .catch(function() {
-        alert('mensaje No guardado'); // En caso de ocurrir un error le mostramos al usuario que ocurrió un error.
+        alert('No fue posible guardar su selección'); // En caso de ocurrir un error le mostramos al usuario que ocurrió un error.
       });
   }
   // aqui evaluamos la ruta y se imprime en HTML
@@ -53,7 +65,7 @@ infoVisit.addEventListener('click', event => {
         printInfoVisit.innerHTML += 
         `<div>${sends[1].recinto}
        ${sends[1].fecha}  
-       <i class="fas fa-sign-out-alt" data-post="${sends[0]}" onclick="deletePost(event)"></i>
+       <i class="fas fa-sign-out-alt" data-post="${sends.id}" onclick="deletePost(event)"></i>
             </div>`;  
       });
     });

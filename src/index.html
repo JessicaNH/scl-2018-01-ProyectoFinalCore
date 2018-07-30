@@ -1,62 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
-    crossorigin="anonymous">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"   integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/style.css">
   <title>Records Web</title>
 </head>
 
 <body>
 
-  <form id="formVisit">
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <label class="input-group-text" for="inputSelect">Zona If</label>
+<div id="screenRegister" class="container-fluid">
+<!-- Aquí irán los input de registro -->
+<input id="rut" class="form-control visit" type="text" placeholder="Ingrese su rut, sin puntos ni guión">
+<input id="name" class="form-control visit" type="text" placeholder="Ingrese su nombre">
+<input id="lastname"class="form-control visit" type="text" placeholder="Igrese su apellido">
+<input id="email" class="form-control visit" type="email" placeholder="Ingrese su e-mail">
+<button id="register" type="button" class="btn btn-secondary visit button_visit">Registrar visita</button>
+<button id="out" type="button" class="btn btn-secondary visit button_visit">Registrar salida</button>
+
+    <form id="formVisit">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label id="zonaIf" class="input-group-text" for="inputSelect">¿Qué empresa va a visitar?</label>
+        </div>
+        <select class="custom-select" id="zonaIfOptions">
+         
+          <option value="Laboratoria">Laboratoria</option>
+          <option value="Aguas Lab">Aguas Lab</option>
+          <option value="Robotics">Robotics</option>
+        </select>
       </div>
-      <select class="custom-select" id="zonaIfOptions">
-        <option selected>¿Que empresa va a visitar?</option>
-        <option value="Laboratoria">Laboratoria</option>
-        <option value="Aguas Lab">Aguas Lab</option>
-        <option value="Robotics">Robotics</option>
-      </select>
-    </div>
+  
+      <button id="infoVisit" type="button" class="btn btn-secondary btn-lg btn-block">Registrar visita</button>
+     
+    </form>
+</div>
 
-    <button id="infoVisit">Enviar Notificación</button>
-  </form>
+<!-- pantalla para elección de empresa a visitar, se abre sólo cuando el visitante se registra -->
 
+<div id="screenPrintVisit">
+<div id="printInfoVisit"></div>
+</div>
 
-  <div id="printInfoVisit"></div>
+<div id="screenOut" class="container-fluid">
+  <!-- aquí usuario ingresará rut, para borrar -->
+  <h1>Salida</h1>
+</div>
 
   <!-- boton salida  -->
 
-
-
   <div id="printRecords"></div>
 
-<form id="formVisit">
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <label class="input-group-text" for="inputSelect">Zona If</label>
-  </div>
-  <select class="custom-select" id="zonaIfOptions">
-    <option selected>¿Que empresa va a visitar?</option>
-    <option value="Laboratoria">Laboratoria</option>
-    <option value="Aguas Lab">Aguas Lab</option>
-    <option value="Robotics">Robotics</option>
-  </select>
-</div>
 
-<button id= "infoVisit">Enviar Notificación</button>
-</form>
-
-
-<div id="printInfoVisit"></div>
   <!-- script section -->
   <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
   <script>
