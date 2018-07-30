@@ -11,12 +11,13 @@ function toggleMenu() {
 function openMenu() {
   sideMenu.classList.remove('menu_closed'); // quitando clase display-none
   sideMenu.classList.add('menu_open');
-  menuDesp.style.zIndex = 2;
+  menuDesp.style.zIndex = 3;
   userRut.style.zIndex = -1;
   userName.style.zIndex = -1;
   userLastname.style.zIndex = -1;
   userEmail.style.zIndex = -1;
   zonaIf.style.zIndex = -1;
+  infoVisit.style.zIndex = -1;
 }
 
 function closeMenu() {
@@ -28,6 +29,7 @@ function closeMenu() {
   userLastname.style.zIndex = 2;
   userEmail.style.zIndex = 2;
   zonaIf.style.zIndex = 2;
+  infoVisit.style.zIndex = 10;
 }
 
 // CAMARAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA

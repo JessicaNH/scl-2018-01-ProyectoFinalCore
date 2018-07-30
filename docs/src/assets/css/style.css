@@ -15,3 +15,15 @@
 #formVisit {
   margin-top: 5%;
 }
+
+#btnVisit {
+  background-color: blueviolet;
+}
+
+#infoVisit {
+  margin-top: 2%;
+}
+
+#screenVisit {
+  display: none;
+}

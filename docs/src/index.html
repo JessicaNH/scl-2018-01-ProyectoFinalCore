@@ -42,54 +42,63 @@
 
     <!-- Empieza el formulario -->
     <div id="screenRegister" class="container-fluid">
-      <form id="formVisit">
-        <!-- rut -->
-        <div id="userRut" class="input-group mb-3">
-          <div class="input-group-prepend">
-            <button class="btn btn-outline-secondary" type="button">Rut</button>
-          </div>
-          <input type="text" class="form-control" placeholder="" id="rut" aria-label="Example text with button addon" aria-describedby="button-addon1">
-        </div>
+      <div class="row">
+        <div class="col-8">
+          <form id="formVisit">
+          <!-- rut -->
+            <div id="userRut" class="input-group mb-3">
+              <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="button">Rut</button>
+              </div>
+              <input type="text" class="form-control" placeholder="" id="rut" aria-label="Example text with button addon" aria-describedby="button-addon1">
+            </div>
         <!-- rut -->
         <!-- Nombre -->
-        <div id="userName" class="input-group mb-3">
-          <div class="input-group-prepend">
-            <button class="btn btn-outline-secondary" type="button">Nombre</button>
-          </div>
-          <input type="text" class="form-control" placeholder="" id="nombre" aria-label="Example text with button addon" aria-describedby="button-addon1">
-        </div>
+            <div id="userName" class="input-group mb-3">
+              <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="button">Nombre</button>
+              </div>
+              <input type="text" class="form-control" placeholder="" id="nombre" aria-label="Example text with button addon" aria-describedby="button-addon1">
+            </div>
         <!-- apellido -->
-        <div id="userLastname" class="input-group mb-3">
-          <div class="input-group-prepend">
-            <button class="btn btn-outline-secondary" type="button">Apellido</button>
-          </div>
-          <input type="text" class="form-control" placeholder="" id="apellido" aria-label="Example text with button addon" aria-describedby="button-addon1">
-        </div>
+            <div id="userLastname" class="input-group mb-3">
+              <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="button">Apellido</button>
+              </div>
+              <input type="text" class="form-control" placeholder="" id="apellido" aria-label="Example text with button addon" aria-describedby="button-addon1">
+            </div>
         <!-- Termino apellido -->
-        <div id="userEmail" class="input-group mb-3">
-          <div class="input-group-prepend">
-            <button class="btn btn-outline-secondary" type="button" id="btn_email">E-mail</button>
-          </div>
-            <input type="text" class="form-control" placeholder="" id="user_email" aria-label="Example text with button addon" aria-describedby="button-addon1">
-        </div>
+            <div id="userEmail" class="input-group mb-3">
+              <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="button" id="btn_email">E-mail</button>
+              </div>
+              <input type="text" class="form-control" placeholder="" id="user_email" aria-label="Example text with button addon" aria-describedby="button-addon1">
+            </div>
         <!-- Empresa donde visita -->
-        <div id="zonaIf" class="input-group mb-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text" for="inputSelect">Zona If</label>
-          </div>
-          <select class="custom-select" id="zonaIfOptions">
-            <option selected>¿Que empresa va a visitar?</option>
-            <option value="Laboratoria">Laboratoria</option>
-            <option value="Aguas Lab">Aguas Lab</option>
-            <option value="Robotics">Robotics</option>
-          </select>
-        </div>
+            <div id="zonaIf" class="input-group mb-3">
+              <div class="input-group-prepend">
+              <label class="input-group-text" for="inputSelect">Zona If</label>
+            </div>
+            <select class="custom-select" id="zonaIfOptions">
+              <option selected>¿Que empresa va a visitar?</option>
+              <option value="Laboratoria">Laboratoria</option>
+              <option value="Aguas Lab">Aguas Lab</option>
+              <option value="Robotics">Robotics</option>
+            </select>
+            <button type="button" class="btn btn-secondary btn-lg btn-block visit" id="infoVisit">Registrar visita</button>
+            </div>
         <!-- Termina Empresa donde visita -->
-        <button type="button" class="btn btn-secondary btn-lg btn-block visit" id="infoVisit">Registrar visita</button>
-      </form>
+          
+          </form>    
+        </div>
+        <div class="col-4">
+          <h1>Fotografia...</h1>
+        </div>
+      </div>
       <!-- Termina formulario -->
     </div>
-   
+
+
     <div id="screenVisit" class="container-fluid">
       <table class="table" id="tblUsersList">
         <thead class="thead-dark" border="1">
@@ -105,14 +114,6 @@
         </thead>
       </table>
     </div>
-
-
- <!-- CAMARAAAAAAAAAAAAAAAAAAAAAA
-<video id="video"></video>
-<button id="startbutton">Take photo</button>
-<canvas id="canvas"></canvas>
-
-CAMARAAAAAAAAAAAAAAAA -->
     
       <!-- script section -->
       <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
