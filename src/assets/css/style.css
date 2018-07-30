@@ -6,28 +6,12 @@
   display: none;
 }
 
-#infoVisit {
-  margin-top: 10%;
-  padding: 1%;
-  text-align: center;
-  align-content: center;
-  background-color: rgba(34, 34, 184, 0.884);
-}
-
-#zonaIf {
-  background-color: rgba(34, 34, 184, 0.884);
-  color: white;
+.visit {
+ background-color: rgb(214, 214, 214);
+ border: none;
+ color: black;
 }
 
 #formVisit {
   margin-top: 5%;
-}
-
-.visit {
-  margin-top: 2%;
-  margin-bottom: 2%;
-}
-
-.button_visit {
-  background-color: rgba(34, 34, 184, 0.884);
 }
