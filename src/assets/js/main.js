@@ -23,7 +23,8 @@ infoVisit.addEventListener('click', event => {
   var hour = formatoFecha.getHours();
   var min = formatoFecha.getMinutes();
 
-  fecha = day + '/' + month + '/' + year + ' ' + hour + ':' + min;
+  fecha = day + '/' + month + '/' + year;
+  hora = hour + ':' + min; 
   // Aqui se obtiene el valor del select
   let selectOptionsIf = document.getElementById('zonaIfOptions');
   selectOptionsIf.addEventListener('click', function() {
@@ -34,6 +35,7 @@ infoVisit.addEventListener('click', event => {
   const infoUsuarioIf = {
     recinto: selectOptionsIf.value,
     fecha: fecha,
+    hora: hora,
     rut: rut.value,
     nombre: nombre.value,
     apellido: apellido.value
@@ -73,6 +75,7 @@ infoVisit.addEventListener('click', event => {
             ${sends[1].apellido}
             ${sends[1].recinto}
             ${sends[1].fecha}  
+            ${sends[1].hora}
             <i class="fas fa-sign-out-alt" data-post="${sends[0]}" onclick="deletePost(event)"></i></div>`;
           });
         });
@@ -91,6 +94,7 @@ infoVisit.addEventListener('click', event => {
        <td>   ${sends[1].apellido}</td>
        <td>   ${sends[1].recinto}</td>
        <td>   ${sends[1].fecha}  </td>
+       <td>   ${sends[1].hora}</td>
        <i class="fas fa-sign-out-alt" data-post="${
   sends[0]
 }" onclick="deletePost(event)"></i>
