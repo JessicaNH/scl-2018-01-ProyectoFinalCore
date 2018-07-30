@@ -42,25 +42,25 @@
       <!-- rut -->
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <button class="btn btn-outline-secondary" type="button" id="btn_rut">Rut</button>
+          <button class="btn btn-outline-secondary" type="button">Rut</button>
         </div>
-        <input type="text" class="form-control" placeholder="" id="user_rut" aria-label="Example text with button addon" aria-describedby="button-addon1">
+        <input type="text" class="form-control" placeholder="" id="rut" aria-label="Example text with button addon" aria-describedby="button-addon1">
       </div>
       <!-- rut -->
       <!-- Nombre -->
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <button class="btn btn-outline-secondary" type="button" id="btn_name" >Nombre</button>
+          <button class="btn btn-outline-secondary" type="button">Nombre</button>
         </div>
-        <input type="text" class="form-control" placeholder="" id="user_name" aria-label="Example text with button addon" aria-describedby="button-addon1">
+        <input type="text" class="form-control" placeholder="" id="nombre" aria-label="Example text with button addon" aria-describedby="button-addon1">
       </div>
       <!--  -->
       <!-- apellido -->
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <button class="btn btn-outline-secondary" type="button" id="btn_lastname">Apellido</button>
+          <button class="btn btn-outline-secondary" type="button">Apellido</button>
         </div>
-        <input type="text" class="form-control" placeholder="" id="user_lastname" aria-label="Example text with button addon" aria-describedby="button-addon1">
+        <input type="text" class="form-control" placeholder="" id="apellido" aria-label="Example text with button addon" aria-describedby="button-addon1">
       </div>
       <!-- Termino apellido -->
       <div class="input-group mb-3">
@@ -82,36 +82,50 @@
         </select>
       </div>
       <!-- Termina Empresa donde visita -->
-      <button type="button" class="btn btn-secondary btn-lg btn-block visit" id="registrarVisita">Registrar visita</button>
+      <button type="button" class="btn btn-secondary btn-lg btn-block visit" id="infoVisit">Registrar visita</button>
     </form>
-    <!-- Termina formulario -->
+    <!-- Termina formulario 
 
-    <div id="printInfoVisit"></div>
+    <div id="printInfoVisit"></div>-->
+  
+      <table class="table" id="tblUsersList">
+        <thead class="thead-dark" border="1">
+          <tr>
+            <th scope="col">#ID</th>
+            <th scope="col">RUT</th>
+            <th scope="col">NOMBRE</th>
+            <th scope="col">APELLIDO</th>
+            <th scope="col">FECHA DE ENTRADA</th>
+            <th scope="col">HORA DE ENTRADA</th>
+            <th scope="col">SALIDA</th>
+          </tr>
+        </thead>
+      </table>
 
-    <!-- boton salida  -->
+      <!-- boton salida  -->
 
-    <!-- script section -->
-    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyC0LlzqkMIv3MmGNrmIm78iaEi0Ejq802o",
-        authDomain: "registrodevisitantes-76273.firebaseapp.com",
-        databaseURL: "https://registrodevisitantes-76273.firebaseio.com",
-        projectId: "registrodevisitantes-76273",
-        storageBucket: "registrodevisitantes-76273.appspot.com",
-        messagingSenderId: "565701083065"
-      };
-      firebase.initializeApp(config);
-    </script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-      crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-      crossorigin="anonymous"></script>
-    <script src="assets/js/app.js"></script>
-    <script src="assets/js/main.js"></script>
+      <!-- script section -->
+      <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+      <script>
+        // Initialize Firebase
+        var config = {
+          apiKey: "AIzaSyC0LlzqkMIv3MmGNrmIm78iaEi0Ejq802o",
+          authDomain: "registrodevisitantes-76273.firebaseapp.com",
+          databaseURL: "https://registrodevisitantes-76273.firebaseio.com",
+          projectId: "registrodevisitantes-76273",
+          storageBucket: "registrodevisitantes-76273.appspot.com",
+          messagingSenderId: "565701083065"
+        };
+        firebase.initializeApp(config);
+      </script>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+      <script src="assets/js/app.js"></script>
+      <script src="assets/js/main.js"></script>
   </body>
 
 </html>
