@@ -59,22 +59,22 @@ infoVisit.addEventListener('click', event => {
   }
   // aqui evaluamos la ruta y se imprime en HTML
 
-  firebase.database().ref("/zonaIf")
-    .once("value", function datosIf(send) {
-      tbl_users_list.innerHTML = ""; // se evita la repeticion de la visita
-
-  firebase
-    .database()
-
-    .ref('/zonaIf')
+  firebase.database().ref('/zonaIf')
     .once('value', function datosIf(send) {
-      printInfoVisit.innerHTML = ' '; // se evita la repeticion de la visita
+      tblUsersList.innerHTML = ''; // se evita la repeticion de la visita
 
-      ref('/zonaIf')
+      firebase
+        .database()
+
+        .ref('/zonaIf')
         .once('value', function datosIf(send) {
-          printInfoVisit.innerHTML = ' '; // se evita la repeticion de la visita 
-          Object.entries(send.val()).forEach(sends => {
-            printInfoVisit.innerHTML += `<div>
+          printInfoVisit.innerHTML = ' '; // se evita la repeticion de la visita
+
+          ref('/zonaIf')
+            .once('value', function datosIf(send) {
+              printInfoVisit.innerHTML = ' '; // se evita la repeticion de la visita 
+              Object.entries(send.val()).forEach(sends => {
+                printInfoVisit.innerHTML += `<div>
             ${sends[1].rut}
             ${sends[1].nombre}
             ${sends[1].apellido}
@@ -82,18 +82,18 @@ infoVisit.addEventListener('click', event => {
             ${sends[1].fecha}  
             ${sends[1].hora}
             <i class="fas fa-sign-out-alt" data-post="${sends[0]}" onclick="deletePost(event)"></i></div>`;
-          });
+              });
+            });
         });
-    });
-  // aqui evaluamos la ruta y se imprime en HTML
-  firebase
-    .database()
-    .ref('/zonaIf')
-    .once('value', function datosIf(send) {
-      tblUsersList.innerHTML = ''; // se evita la repeticion de la visita
+      // aqui evaluamos la ruta y se imprime en HTML
+      firebase
+        .database()
+        .ref('/zonaIf')
+        .once('value', function datosIf(send) {
+          tblUsersList.innerHTML = ''; // se evita la repeticion de la visita
 
-      Object.entries(send.val()).forEach(sends => {
-        tblUsersList.innerHTML += `<tr>
+          Object.entries(send.val()).forEach(sends => {
+            tblUsersList.innerHTML += `<tr>
       <td>  ${sends[1].rut}</td>
        <td>   ${sends[1].nombre}</td>
        <td>   ${sends[1].apellido}</td>
@@ -104,6 +104,7 @@ infoVisit.addEventListener('click', event => {
   sends[0]
 }" onclick="deletePost(event)"></i>
     </tr>`; 
-      });
+          });
+        });
     });
 });
