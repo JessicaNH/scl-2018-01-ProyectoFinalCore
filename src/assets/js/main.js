@@ -1,5 +1,4 @@
-const form = document.getElementById('formVisit'); // Obtenemos la referencia al formulario
-
+const form = document.getElementById("formVisit"); // Obtenemos la referencia al formulario
 if (form) {
   // Si existe nuestro elemento en memoria este se quedara escuchando al evento submit del formulario
   form.addEventListener('submit', formVisit); // Al momento de enviar el formulario, ejecuta la función "contactform"
@@ -13,9 +12,8 @@ infoVisit.addEventListener("click", event => {
   let nombre = document.getElementById("nombre");
   let apellido = document.getElementById("apellido");
 
-// Boton para enviar formulario de visita 
-infoVisit.addEventListener('click', event => {
-  event.preventDefault(); // Prevenimos el comportamiento por defecto de un formulario (Enviar por URL los parametros)
+  // tabla
+
   // Se crea constructor para fecha
   let formatoFecha = new Date();
   let day = formatoFecha.getUTCDate();
@@ -65,25 +63,27 @@ infoVisit.addEventListener('click', event => {
 
     .ref("/zonaIf")
     .once("value", function datosIf(send) {
-      printInfoVisit.innerHTML = ""; // se evita la repeticion de la visita
-
-    .ref('/zonaIf')
-    .once('value', function datosIf(send) {
-      printInfoVisit.innerHTML = ' '; // se evita la repeticion de la visita 
+      tbl_users_list.innerHTML = ""; // se evita la repeticion de la visita
       Object.entries(send.val()).forEach(sends => {
-        printInfoVisit.innerHTML += `<div>
-        ${sends[1].rut}
-        ${sends[1].nombre}
-        ${sends[1].apellido}
-        ${sends[1].recinto}
-         ${sends[1].fecha}  
+        tbl_users_list.innerHTML += `<tr>
+      <td>  ${sends[1].rut}</td>
+       <td>   ${sends[1].nombre}</td>
+       <td>   ${sends[1].apellido}</td>
+       <td>   ${sends[1].recinto}</td>
+       <td>   ${sends[1].fecha}  </td>
        <i class="fas fa-sign-out-alt" data-post="${
          sends[0]
        }" onclick="deletePost(event)"></i>
-            </div>`;
-      });
-    });
-});
+    </tr>`; 
+      })
+    })
+  })
+
+
+       
+       
+       
+       
 
 
 
