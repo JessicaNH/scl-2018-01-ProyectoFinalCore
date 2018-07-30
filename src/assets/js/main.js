@@ -56,6 +56,11 @@ infoVisit.addEventListener('click', event => {
       });
   }
   // aqui evaluamos la ruta y se imprime en HTML
+
+  firebase.database().ref("/zonaIf")
+    .once("value", function datosIf(send) {
+      tbl_users_list.innerHTML = ""; // se evita la repeticion de la visita
+
   firebase
     .database()
 
@@ -73,17 +78,18 @@ infoVisit.addEventListener('click', event => {
             ${sends[1].apellido}
             ${sends[1].recinto}
             ${sends[1].fecha}  
+            ${sends[1].hora}
             <i class="fas fa-sign-out-alt" data-post="${sends[0]}" onclick="deletePost(event)"></i></div>`;
           });
         });
     });
-  
   // aqui evaluamos la ruta y se imprime en HTML
   firebase
     .database()
     .ref('/zonaIf')
     .once('value', function datosIf(send) {
       tblUsersList.innerHTML = ''; // se evita la repeticion de la visita
+
       Object.entries(send.val()).forEach(sends => {
         tblUsersList.innerHTML += `<tr>
       <td>  ${sends[1].rut}</td>
