@@ -1,3 +1,18 @@
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+}
+
+header {
+  display: none;
+}
+
 #screenChooseCompany {
   display: none;
 }
@@ -57,20 +72,6 @@
   display: none;
 }
 
-html {
-  width: 100%;
-  height: 100%;
-}
-
-body {
-  width: 100%;
-  height: 100%;
-}
-
-header {
-  display: none;
-}
-
 .btnstart {
   width: 20%;
   height: 5%;
@@ -81,7 +82,14 @@ header {
   margin-left: auto;
   margin-right: auto;
   font-size: 130%;
+  font-family: 'Roboto', sans-serif;
 }
+
 #userEmail{
   padding-top: 2%;
+}
+
+.encabezadotbl {
+  color: #FAFAFA;
+  font-size: 100%;
 }
