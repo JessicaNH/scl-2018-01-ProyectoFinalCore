@@ -12,34 +12,13 @@ function saveContactForm(infoUsuarioIf) {
       alert('No fue posible guardar su selección'); // En caso de ocurrir un error le mostramos al usuario que ocurrió un error.
     });
 }
+
 // aqui evaluamos la ruta y se imprime en HTML
 
 firebase.database().ref('/zonaIf')
   .once('value', function datosIf(send) {
     tblUsersList.innerHTML = ''; // se evita la repeticion de la visita
 
-    firebase
-      .database()
-
-      .ref('/zonaIf')
-      .once('value', function datosIf(send) {
-        printInfoVisit.innerHTML = ' '; // se evita la repeticion de la visita
-
-        ref('/zonaIf')
-          .once('value', function datosIf(send) {
-            printInfoVisit.innerHTML = ' '; // se evita la repeticion de la visita 
-            Object.entries(send.val()).forEach(sends => {
-              printInfoVisit.innerHTML += `<div>
-          ${sends[1].rut}
-          ${sends[1].nombre}
-          ${sends[1].apellido}
-          ${sends[1].recinto}
-          ${sends[1].fecha}  
-          ${sends[1].hora}
-          <i class="fas fa-sign-out-alt" data-post="${sends[0]}" onclick="deletePost(event)"></i></div>`;
-            });
-          });
-      });
     // aqui evaluamos la ruta y se imprime en HTML
     firebase
       .database()
@@ -71,73 +50,42 @@ function inicio() {
   closeMenu();
 }
 
-// CAMARA
-
-(function() {
-  var streaming = false,
-    video = document.querySelector('#video'),
-    canvas = document.querySelector('#canvas'),
-    photo = document.querySelector('#photo'),
-    startbutton = document.querySelector('#startbutton'),
-    width = 320,
-    height = 0;
-
-  navigator.getMedia =
-    navigator.getUserMedia ||
-    navigator.webkitGetUserMedia ||
-    navigator.mozGetUserMedia ||
-    navigator.msGetUserMedia;
-
-  navigator.getMedia(
-    {
-      video: true,
-      audio: false
-    },
-    function(stream) {
-      if (navigator.mozGetUserMedia) {
-        video.mozSrcObject = stream;
-      } else {
-        var vendorURL = window.URL || window.webkitURL;
-        video.src = vendorURL.createObjectURL(stream);
-      }
-      video.play();
-    },
-    function(err) {
-      console.log('An error occured! ' + err);
-    }
-  );
-
-  video.addEventListener(
-    'canplay',
-    function(ev) {
-      if (!streaming) {
-        height = video.videoHeight / (video.videoWidth / width);
-        video.setAttribute('width', width);
-        video.setAttribute('height', height);
-        canvas.setAttribute('width', width);
-        canvas.setAttribute('height', height);
-        streaming = true;
-      }
-    }, false);
-});
-
-
-function takepicture() {
-  canvas.width = width;
-  canvas.height = height;
-  canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-  let data = canvas.toDataURL('image/png');
-  photo.setAttribute('src', data);
+// registro de service worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }).catch(function(err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  });
 }
 
-startbutton.addEventListener(
-  'click',
-  function(ev) {
-    takepicture();
-    ev.preventDefault();
-  },
-  false
-);
+// pedir permiso para realizar notificaciones
+let messaging = firebase.messaging();
+messaging.requestPermission()
+  .then(function() {
+    console.log('Se han aceptado las notificaciones');
+    return messaging.getToken();
+  })
+  .the(function(token) {
+    if (token) { 
+      guardarToken(token);
+    } else {
+      anulaToken();
+    }
+  })
+  .catch(function(err) {
+    mensajeFeedback(err);
+    console.log('No se ha recibido permiso / token: ', err);
+  });
+messaging.onMessage(function(payload) {
+  console.log('Mensaje recibido con el sitio activo', payload);
+  mensajeFeedback(payload.notification.title + ': ' + payload.notification.body);
+});
+
 
 function toggleMenu() {
   // añadir función onclick="toggleMenu()" al botón del nav bar y al botón cerrar.
