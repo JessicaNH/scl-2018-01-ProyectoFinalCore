@@ -1,8 +1,11 @@
 const form = document.getElementById('formVisit'); // Obtenemos la referencia al formulario
 const infoVisit = document.getElementById('infoVisit');
+
+// NUEVO PARA LA CAMARA ========================
 let canvasImg = document.getElementById('canvas');
 var dataBase64 = canvasImg.toDataURL();
 console.log(dataBase64)
+// ===============================================
 
 
 if (form) {
@@ -43,7 +46,8 @@ infoVisit.addEventListener("click", event => {
     rut: rut.value,
     nombre: nombre.value,
     apellido: apellido.value,
-    img: dataBase64
+    img: dataBase64 // aqui se agregaaaaa la camara en firebase
+
   }; // Creamos un objecto con todos los elementos de nuestro formulario.
   saveContactForm(infoUsuarioIf); // Enviamos la información obtenida por el usuario a la función que se encargará de guardar la información en Firebase
   form.reset(); // Borramos todos los campos.
@@ -78,8 +82,7 @@ infoVisit.addEventListener("click", event => {
             ${sends[1].apellido}
             ${sends[1].recinto}
             ${sends[1].fecha}  
-            ${sends[1].hora}
-            <img src="${img}" alt="">         
+            ${sends[1].hora}        
             <i class="fas fa-sign-out-alt" data-post="${sends[0]}" onclick="deletePost(event)"></i></div>`;
             });
           });
