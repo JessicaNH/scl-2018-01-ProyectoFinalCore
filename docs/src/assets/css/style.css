@@ -74,3 +74,13 @@ body {
 header {
   display: none;
 }
+
+.btnstart {
+  width: 25%;
+  height: 10%;
+  border-radius: 50%;
+  position: relative;
+  top: 60%;
+  margin-left: 17%;
+  font-size: 130%;
+}
