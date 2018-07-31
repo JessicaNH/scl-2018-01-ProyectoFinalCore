@@ -125,3 +125,20 @@ infoVisit.addEventListener('click', event => {
         });
     });
 });
+
+const btnvisit = document.getElementById('btnvisit');
+const btnadmin = document.getElementById('btnadmin');
+
+btnvisit.addEventListener('click', () => {
+  screenRegister.style.display = 'block';
+  screenStart.style.display = 'none';
+  screenVisit.style.display = 'none';
+  menuDesp.style.display = 'block';
+});
+
+btnadmin.addEventListener('click', () => {
+  screenRegister.style.display = 'none';
+  screenStart.style.display = 'none';
+  screenVisit.style.display = 'block';
+  menuDesp.style.display = 'block';
+});

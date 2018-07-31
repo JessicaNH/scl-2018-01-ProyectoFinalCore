@@ -18,7 +18,31 @@ function closeMenu() {
   sideMenu.classList.remove('menu_open');
 }
 
-// CAMARAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+function registrarVisitas() {
+  screenRegister.style.display = 'block';
+  screenStart.style.display = 'none';
+  screenVisit.style.display = 'none';
+  menuDesp.style.display = 'block';
+  closeMenu();
+}
+
+function registrosTotales() {
+  screenRegister.style.display = 'none';
+  screenStart.style.display = 'none';
+  screenVisit.style.display = 'block';
+  menuDesp.style.display = 'block';
+  closeMenu();
+}
+
+function inicio() {
+  screenRegister.style.display = 'none';
+  screenStart.style.display = 'block';
+  screenVisit.style.display = 'none';
+  menuDesp.style.display = 'none';
+  closeMenu();
+}
+
+// CAMARA
 
 (function() {
   var streaming = false,
@@ -68,55 +92,20 @@ function closeMenu() {
     }, false);
 });
 
-/*  
-  function takepicture() {
-    canvas.width = width;
-    canvas.height = height;
-    canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-    var data = canvas.toDataURL('image/png');
-    photo.setAttribute('src', data);
-  }
 
-  startbutton.addEventListener(
-    'click',
-    function(ev) {
-      takepicture();
-      ev.preventDefault();
-    },
-    false
-  );
-(); */
-//registro de service worker
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/sw.js').then(function(registration) {
-      // Registration was successful
-      console.log('ServiceWorker registration successful with scope: ', registration.scope);
-    }).catch(function(err) {
-      // registration failed :(
-      console.log('ServiceWorker registration failed: ', err);
-    });
-  });
+function takepicture() {
+  canvas.width = width;
+  canvas.height = height;
+  canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+  let data = canvas.toDataURL('image/png');
+  photo.setAttribute('src', data);
 }
-//pedir permiso para realizar notificaciones
-let messaging = firebase.messaging();
-messaging.requestPermission()
-  .then(function() {
-    console.log('Se han aceptado las notificaciones');
-    return messaging.getToken();
-  })
-  .the(function(token){
-    if(token) {
-      guardarToken(token)
-    } else {
-      anulaToken();
-    }
-  })
-  .catch(function(err) {
-    mensajeFeedback(err);
-    console.log('No se ha recibido permiso / token: ', err);
-  });
-  messaging.onMessage(function(payload) {
-    console.log("Mensaje recibido con el sitio activo", payload);
-    mensajeFeedback(payload.notification.title + ': ' + payload.notification.body);
-  });
+
+startbutton.addEventListener(
+  'click',
+  function(ev) {
+    takepicture();
+    ev.preventDefault();
+  },
+  false
+);
