@@ -14,12 +14,12 @@ if (form) {
 }
 
 // Boton para enviar formulario de visita
-infoVisit.addEventListener("click", event => {
+infoVisit.addEventListener('click', event => {
   event.preventDefault(); // Prevenimos el comportamiento por defecto de un formulario (Enviar por URL los parametros)
   // Se crea la informacion del visitante, rut, nombre y apellido
-  let rut = document.getElementById("rut");
-  let nombre = document.getElementById("nombre");
-  let apellido = document.getElementById("apellido");
+  let rut = document.getElementById('rut');
+  let nombre = document.getElementById('nombre');
+  let apellido = document.getElementById('apellido');
   // tabla
 
   // Se crea constructor para fecha
@@ -33,8 +33,8 @@ infoVisit.addEventListener("click", event => {
   fecha = day + "/" + month + "/" + year;
   hora = hour + ":" + min;
   // Aqui se obtiene el valor del select
-  let selectOptionsIf = document.getElementById("zonaIfOptions");
-  selectOptionsIf.addEventListener("click", function() {
+  let selectOptionsIf = document.getElementById('zonaIfOptions');
+  selectOptionsIf.addEventListener('click', function() {
     let selectedZonaIf = this.options[selectOptionsIf.selectedIndex];
     console.log(selectedZonaIf.value);
   });
@@ -55,7 +55,7 @@ infoVisit.addEventListener("click", event => {
   function saveContactForm(infoUsuarioIf) {
     firebase
       .database()
-      .ref("zonaIf")
+      .ref('zonaIf')
       .push(infoUsuarioIf) // Hacemos referencia el nombre del objeto que contendrá nuestros registros y empujamos los nuevos envios de datos
       .then(function() {
         alert("Se ha enviado un aviso de su llegada"); // Si la petición es correcta y almaceno los datos mostramos un mensaje al usuario.
@@ -70,10 +70,10 @@ infoVisit.addEventListener("click", event => {
 
   firebase
     .database()
-    .ref("/zonaIf")
-    .once("value", function datosIf(send) {
+    .ref('/zonaIf')
+    .once('value', function datosIf(send) {
       pruebaImpresion.innerHTML = ""; // se evita la repeticion de la visita
-      firebase.database().ref("/zonaIf").once("value", function datosIf(send) {
+      firebase.database().ref('/zonaIf').once('value', function datosIf(send) {
             pruebaImpresion.innerHTML = " "; // se evita la repeticion de la visita
             Object.entries(send.val()).forEach(sends => {
               pruebaImpresion.innerHTML += `<div>
