@@ -32,7 +32,7 @@
           <div id="options_menu" class="menu_content">
             <a class="nav-link active text-secondary" href="#">
               <i class="fas fa-home"></i> Perfil</a>
-            <a class="nav-link text-secondary" href="#">
+            <a onclick="registrarVisitas()" class="nav-link text-secondary" href="#">
               <i class="fas fa-users"></i> Registrar Visitas</a>
             <a class="nav-link text-secondary" href="#">
               <i class="fas fa-book-open"></i> Registros Totales</a>
@@ -45,8 +45,8 @@
 
     <!-- Primera pantalla -->
     <div id="screenStart">
-      <button type="button" class="animated pulse infinite btn btn-light btnstart">VISITANTE</button>
-      <button type="button" class="animated pulse infinite btn btn-light btnstart">ADMINISTRADOR</button>  
+      <button id="btnvisit" type="button" class="animated pulse infinite btn btn-light btnstart">VISITANTE</button>
+      <button id="btnadmin" type="button" class="animated pulse infinite btn btn-light btnstart">ADMINISTRADOR</button>  
     </div>
 
     <!-- Empieza el formulario -->

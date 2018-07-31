@@ -18,6 +18,14 @@ function closeMenu() {
   sideMenu.classList.remove('menu_open');
 }
 
+function registrarVisitas() {
+  screenRegister.style.display = 'block';
+  screenStart.style.display = 'none';
+  screenVisit.style.display = 'none';
+  menuDesp.style.display = 'block';
+  closeMenu();
+}
+
 // CAMARA
 
 (function() {
