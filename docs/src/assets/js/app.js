@@ -92,8 +92,7 @@ function inicio() {
     }, false);
 });
 
-
-function takepicture() {
+function takepicture(width, height) {
   canvas.width = width;
   canvas.height = height;
   canvas.getContext('2d').drawImage(video, 0, 0, width, height);
