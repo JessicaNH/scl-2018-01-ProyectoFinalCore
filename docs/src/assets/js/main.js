@@ -12,6 +12,7 @@ infoVisit.addEventListener('click', event => {
   let rut = document.getElementById('rut');
   let nombre = document.getElementById('nombre');
   let apellido = document.getElementById('apellido');
+  let receiverEmail = document.getElementById('user_email').value;
 
   // tabla
 
@@ -24,10 +25,10 @@ infoVisit.addEventListener('click', event => {
   var min = formatoFecha.getMinutes();
 
   fecha = day + '/' + month + '/' + year;
-  hora = hour + ':' + min; 
+  hora = hour + ':' + min;
   // Aqui se obtiene el valor del select
   let selectOptionsIf = document.getElementById('zonaIfOptions');
-  selectOptionsIf.addEventListener('click', function() {
+  selectOptionsIf.addEventListener('click', function () {
     let selectedZonaIf = this.options[selectOptionsIf.selectedIndex];
     console.log(selectedZonaIf.value);
   });
@@ -48,12 +49,20 @@ infoVisit.addEventListener('click', event => {
       .database()
       .ref('zonaIf')
       .push(infoUsuarioIf) // Hacemos referencia el nombre del objeto que contendrá nuestros registros y empujamos los nuevos envios de datos
-      .then(function() {
+      .then(function () {
+
+        Email.send('la.laboratoria@example.com',
+          receiverEmail,
+          'Visitante',
+          'Hola, tiene un nuevo visitante : ' + infoUsuarioIf.nombre + ' ' + infoUsuarioIf.apellido,
+          {
+            token: 'f92c06af-db41-408f-87f2-b2190fa2bc84'
+          });
         alert('Se ha enviado un aviso de su llegada'); // Si la petición es correcta y almaceno los datos mostramos un mensaje al usuario.
 
         alert('mensaje guardado'); // Si la petición es correcta y almaceno los datos mostramos un mensaje al usuario.
       })
-      .catch(function() {
+      .catch(function () {
         alert('No fue posible guardar su selección'); // En caso de ocurrir un error le mostramos al usuario que ocurrió un error.
       });
   }
@@ -101,9 +110,9 @@ infoVisit.addEventListener('click', event => {
        <td>   ${sends[1].fecha}  </td>
        <td>   ${sends[1].hora}</td>
        <i class="fas fa-sign-out-alt" data-post="${
-  sends[0]
-}" onclick="deletePost(event)"></i>
-    </tr>`; 
+              sends[0]
+              }" onclick="deletePost(event)"></i>
+    </tr>`;
           });
         });
     });
