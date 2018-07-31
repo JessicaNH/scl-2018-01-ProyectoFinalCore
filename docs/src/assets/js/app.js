@@ -26,6 +26,14 @@ function registrarVisitas() {
   closeMenu();
 }
 
+function registrosTotales() {
+  screenRegister.style.display = 'none';
+  screenStart.style.display = 'none';
+  screenVisit.style.display = 'block';
+  menuDesp.style.display = 'block';
+  closeMenu();
+}
+
 // CAMARA
 
 (function() {
