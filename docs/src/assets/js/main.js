@@ -1,12 +1,17 @@
 const form = document.getElementById('formVisit'); // Obtenemos la referencia al formulario
 const infoVisit = document.getElementById('infoVisit');
+
+// NUEVO PARA LA CAMARA
+let canvasImg = document.getElementById('canvas');
+var dataBase64 = canvasImg.toDataURL();
+console.log(dataBase64)
+//
+
+
 if (form) {
   // Si existe nuestro elemento en memoria este se quedara escuchando al evento submit del formulario
   form.addEventListener('submit', formVisit); // Al momento de enviar el formulario, ejecuta la función "contactform"
 }
-
-
-
 
 // Boton para enviar formulario de visita
 infoVisit.addEventListener('click', event => {
@@ -17,6 +22,7 @@ infoVisit.addEventListener('click', event => {
   let apellido = document.getElementById('apellido');
   let receiverEmail = document.getElementById('user_email').value;
   console.info(user_email);
+
   // tabla
 
   // Se crea constructor para fecha
@@ -28,7 +34,7 @@ infoVisit.addEventListener('click', event => {
   var min = formatoFecha.getMinutes();
 
   fecha = day + '/' + month + '/' + year;
-  hora = hour + ':' + min; 
+  hora = hour + ':' + min;
   // Aqui se obtiene el valor del select
   let selectOptionsIf = document.getElementById('zonaIfOptions');
   selectOptionsIf.addEventListener('click', function() {
@@ -43,8 +49,9 @@ infoVisit.addEventListener('click', event => {
     rut: rut.value,
     nombre: nombre.value,
     apellido: apellido.value,
-  
+    img: dataBase64 // aqui se agregaaaaa la camara en firebase
   }; // Creamos un objecto con todos los elementos de nuestro formulario.
+  
   saveContactForm(infoUsuarioIf); // Enviamos la información obtenida por el usuario a la función que se encargará de guardar la información en Firebase
   form.reset(); // Borramos todos los campos.
   // Nos informa si la informacion fue guardada correctamente en firebase
@@ -69,60 +76,30 @@ infoVisit.addEventListener('click', event => {
         .catch(function () {
           alert('No fue posible guardar su selección'); // En caso de ocurrir un error le mostramos al usuario que ocurrió un error.
         });
-  }
-        
-        
-        
-        
+  } 
+            
   // aqui evaluamos la ruta y se imprime en HTML
 
-  firebase.database().ref('/zonaIf')
+  firebase
+    .database()
+    .ref('/zonaIf')
     .once('value', function datosIf(send) {
-      tblUsersList.innerHTML = ''; // se evita la repeticion de la visita
-
-      firebase
-        .database()
-
-        .ref('/zonaIf')
-        .once('value', function datosIf(send) {
-          printInfoVisit.innerHTML = ' '; // se evita la repeticion de la visita
-
-          ref('/zonaIf')
-            .once('value', function datosIf(send) {
-              printInfoVisit.innerHTML = ' '; // se evita la repeticion de la visita 
-              Object.entries(send.val()).forEach(sends => {
-                printInfoVisit.innerHTML += `<div>
+      pruebaImpresion.innerHTML = ""; // se evita la repeticion de la visita
+      firebase.database().ref('/zonaIf').once('value', function datosIf(send) {
+            pruebaImpresion.innerHTML = " "; // se evita la repeticion de la visita
+            Object.entries(send.val()).forEach(sends => {
+              pruebaImpresion.innerHTML += `<div>
             ${sends[1].rut}
             ${sends[1].nombre}
             ${sends[1].apellido}
             ${sends[1].recinto}
             ${sends[1].fecha}  
-            ${sends[1].hora}
+            ${sends[1].hora}        
             <i class="fas fa-sign-out-alt" data-post="${sends[0]}" onclick="deletePost(event)"></i></div>`;
-              });
             });
-        });
-      // aqui evaluamos la ruta y se imprime en HTML
-      firebase
-        .database()
-        .ref('/zonaIf')
-        .once('value', function datosIf(send) {
-          tblUsersList.innerHTML = ''; // se evita la repeticion de la visita
-
-          Object.entries(send.val()).forEach(sends => {
-            tblUsersList.innerHTML += `<tr>
-      <td>  ${sends[1].rut}</td>
-       <td>   ${sends[1].nombre}</td>
-       <td>   ${sends[1].apellido}</td>
-       <td>   ${sends[1].recinto}</td>
-       <td>   ${sends[1].fecha}  </td>
-       <td>   ${sends[1].hora}</td>
-       <i class="fas fa-sign-out-alt" data-post="${
-  sends[0]
-}" onclick="deletePost(event)"></i>
-    </tr>`; 
           });
         });
+      // aqui evaluamos la ruta y se imprime en HTML
     });
 });
 
@@ -142,3 +119,4 @@ btnadmin.addEventListener('click', () => {
   screenVisit.style.display = 'block';
   menuDesp.style.display = 'block';
 });
+
