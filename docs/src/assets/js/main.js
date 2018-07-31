@@ -5,9 +5,6 @@ if (form) {
   form.addEventListener('submit', formVisit); // Al momento de enviar el formulario, ejecuta la función "contactform"
 }
 
-
-
-
 // Boton para enviar formulario de visita
 infoVisit.addEventListener('click', event => {
   event.preventDefault(); // Prevenimos el comportamiento por defecto de un formulario (Enviar por URL los parametros)
@@ -54,26 +51,23 @@ infoVisit.addEventListener('click', event => {
       .ref('zonaIf')
       .push(infoUsuarioIf) // Hacemos referencia el nombre del objeto que contendrá nuestros registros y empujamos los nuevos envios de datos
       .then(function() {
-        //alert('Se ha enviado un aviso de su llegada'); // Si la petición es correcta y almaceno los datos mostramos un mensaje al usuario.
+        // alert('Se ha enviado un aviso de su llegada'); // Si la petición es correcta y almaceno los datos mostramos un mensaje al usuario.
         console.info(Email);
       
         Email.send('la.laboratoria@example.com',
-        receiverEmail,
-        'Visitante',
-        'Hola, tiene un nuevo visitante :' + infoUsuarioIf.nombre + ' ' + infoUsuarioIf.apellido,
-        {token: 'f92c06af-db41-408f-87f2-b2190fa2bc84'
-        }); 
-         alert('Se ha enviado un aviso de su llegada'); // Si la petición es correcta y almaceno los datos mostramos un mensaje al usuario.
-         alert('mensaje guardado'); // Si la petición es correcta y almaceno los datos mostramos un mensaje al usuario.
+          receiverEmail,
+          'Visitante',
+          'Hola, tiene un nuevo visitante :' + infoUsuarioIf.nombre + ' ' + infoUsuarioIf.apellido,
+          {token: 'f92c06af-db41-408f-87f2-b2190fa2bc84'
+          }); 
+        alert('Se ha enviado un aviso de su llegada'); // Si la petición es correcta y almaceno los datos mostramos un mensaje al usuario.
+        alert('mensaje guardado'); // Si la petición es correcta y almaceno los datos mostramos un mensaje al usuario.
       })
-        .catch(function () {
-          alert('No fue posible guardar su selección'); // En caso de ocurrir un error le mostramos al usuario que ocurrió un error.
-        });
+      .catch(function() {
+        alert('No fue posible guardar su selección'); // En caso de ocurrir un error le mostramos al usuario que ocurrió un error.
+      });
   }
-        
-        
-        
-        
+          
   // aqui evaluamos la ruta y se imprime en HTML
 
   firebase.database().ref('/zonaIf')
@@ -133,12 +127,5 @@ btnvisit.addEventListener('click', () => {
   screenRegister.style.display = 'block';
   screenStart.style.display = 'none';
   screenVisit.style.display = 'none';
-  menuDesp.style.display = 'block';
-});
-
-btnadmin.addEventListener('click', () => {
-  screenRegister.style.display = 'none';
-  screenStart.style.display = 'none';
-  screenVisit.style.display = 'block';
   menuDesp.style.display = 'block';
 });

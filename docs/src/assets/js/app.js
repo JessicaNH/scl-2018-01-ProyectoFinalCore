@@ -92,51 +92,7 @@ function inicio() {
     }, false);
 });
 
-  startbutton.addEventListener(
-    'click',
-    function(ev) {
-      takepicture();
-      ev.preventDefault();
-    },
-    false
-  );
-
-//registro de service worker
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/sw.js').then(function(registration) {
-      // Registration was successful
-      console.log('ServiceWorker registration successful with scope: ', registration.scope);
-    }).catch(function(err) {
-      // registration failed :(
-      console.log('ServiceWorker registration failed: ', err);
-    });
-  });
-}
-//pedir permiso para realizar notificaciones
-let messaging = firebase.messaging();
-messaging.requestPermission()
-  .then(function() {
-    console.log('Se han aceptado las notificaciones');
-    return messaging.getToken();
-  })
-  .the(function(token){
-    if(token) {
-      guardarToken(token)
-    } else {
-      anulaToken();
-    }
-  })
-  .catch(function(err) {
-    mensajeFeedback(err);
-    console.log('No se ha recibido permiso / token: ', err);
-  });
-  messaging.onMessage(function(payload) {
-    console.log("Mensaje recibido con el sitio activo", payload);
-    mensajeFeedback(payload.notification.title + ': ' + payload.notification.body);
-  });
-
-function takepicture() {
+function takepicture(width, height) {
   canvas.width = width;
   canvas.height = height;
   canvas.getContext('2d').drawImage(video, 0, 0, width, height);
