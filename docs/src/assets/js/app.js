@@ -18,7 +18,31 @@ function closeMenu() {
   sideMenu.classList.remove('menu_open');
 }
 
-// CAMARAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+function registrarVisitas() {
+  screenRegister.style.display = 'block';
+  screenStart.style.display = 'none';
+  screenVisit.style.display = 'none';
+  menuDesp.style.display = 'block';
+  closeMenu();
+}
+
+function registrosTotales() {
+  screenRegister.style.display = 'none';
+  screenStart.style.display = 'none';
+  screenVisit.style.display = 'block';
+  menuDesp.style.display = 'block';
+  closeMenu();
+}
+
+function inicio() {
+  screenRegister.style.display = 'none';
+  screenStart.style.display = 'block';
+  screenVisit.style.display = 'none';
+  menuDesp.style.display = 'none';
+  closeMenu();
+}
+
+// CAMARA
 
 (function() {
   var streaming = false,
@@ -68,15 +92,6 @@ function closeMenu() {
     }, false);
 });
 
-/*  
-  function takepicture() {
-    canvas.width = width;
-    canvas.height = height;
-    canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-    var data = canvas.toDataURL('image/png');
-    photo.setAttribute('src', data);
-  }
-
   startbutton.addEventListener(
     'click',
     function(ev) {
@@ -120,3 +135,21 @@ messaging.requestPermission()
     console.log("Mensaje recibido con el sitio activo", payload);
     mensajeFeedback(payload.notification.title + ': ' + payload.notification.body);
   });
+
+function takepicture() {
+  canvas.width = width;
+  canvas.height = height;
+  canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+  let data = canvas.toDataURL('image/png');
+  photo.setAttribute('src', data);
+}
+
+startbutton.addEventListener(
+  'click',
+  function(ev) {
+    takepicture();
+    ev.preventDefault();
+  },
+  false
+);
+
