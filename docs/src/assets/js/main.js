@@ -73,6 +73,9 @@ infoVisit.addEventListener('click', event => {
   firebase.database().ref('/zonaIf')
     .once('value', function datosIf(send) {
       tblUsersList.innerHTML = ''; // se evita la repeticion de la visita
+
+      // aqui evaluamos la ruta y se imprime en HTML
+
       firebase
         .database()
         .ref('/zonaIf')
@@ -81,15 +84,12 @@ infoVisit.addEventListener('click', event => {
 
           Object.entries(send.val()).forEach(sends => {
             tblUsersList.innerHTML += `<tr>
-      <td>  ${sends[1].rut}</td>
+       <td>  ${sends[1].rut}</td>
        <td>   ${sends[1].nombre}</td>
        <td>   ${sends[1].apellido}</td>
        <td>   ${sends[1].recinto}</td>
        <td>   ${sends[1].fecha}  </td>
        <td>   ${sends[1].hora}</td>
-       <i class="fas fa-sign-out-alt" data-post="${
-  sends[0]
-}" onclick="deletePost(event)"></i>
     </tr>`; 
           });
         });
